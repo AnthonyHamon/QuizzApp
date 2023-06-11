@@ -1,11 +1,11 @@
-.container{
+.container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar{
+.sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,12 +16,12 @@
     border-bottom-left-radius: var(--bs-card-border-radius);
 }
 
-.j-center{
+.j-center {
     display: flex;
     justify-content: center;
 }
 
-.card{
+.card {
     min-height: 50vh;
     width: 50rem;
     flex-direction: row !important;
@@ -32,7 +32,8 @@
     width: 76px;
 }
 
-.sidebar ul, li {
+.sidebar ul,
+li {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -41,13 +42,13 @@
     gap: 16px;
 }
 
-.sidebar_list{
+.sidebar_list {
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-.card-title{
+.card-title {
     font-size: 38px;
     text-align: center;
     height: 85%;
@@ -55,14 +56,16 @@
     align-items: center;
     justify-content: center;
 }
-.card-body{
+
+.card-body {
     background-image: url("img/brainbg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    border-radius: var(--bs-card-border-radius);
 }
 
-.card-body p{
+.card-body p {
     font-size: 24px;
     text-align: center;
 }
@@ -72,7 +75,7 @@
     justify-content: flex-end;
 }
 
-.button_ctn button{
+.button_ctn button {
     background-color: #FF4C12;
     border: none;
     border-radius: 8px;
