@@ -55,6 +55,12 @@
     align-items: center;
     justify-content: center;
 }
+.card-body{
+    background-image: url("img/brainbg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 
 .card-body p{
     font-size: 24px;
