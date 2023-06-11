@@ -4,3 +4,39 @@
     align-items: center;
     justify-content: center;
 }
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20%;
+    background-color: #27355C;
+    color: white;
+    border-top-left-radius: var(--bs-card-border-radius);
+    border-bottom-left-radius: var(--bs-card-border-radius);
+}
+
+.j-center{
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    min-height: 50vh;
+    width: 50rem;
+    flex-direction: row !important;
+}
+
+.sidebar img {
+    padding-top: 24px;
+    width: 76px;
+}
+
+.sidebar ul, li {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0;
+    gap: 16px;
+}
+
