@@ -21,14 +21,14 @@ function returnQuiz(){
                     </div>
                 </div>
                 <div class="button_ctn">
-                    <button>START NOW</button>
+                    <button onclick= "startQuiz()">START NOW</button>
                 </div>
             </div>
         </div>
     `
 }
 
-function init(){
-    let quizCtn = document.getElementById('quizCtn');
-    quizCtn.innerHTML = returnQuiz();
-}
+// function init(){
+//     let quizCtn = document.getElementById('quizCtn');
+//     quizCtn.innerHTML = returnQuiz();
+// }
