@@ -69,7 +69,8 @@ li {
     font-size: 24px;
     text-align: center;
 }
-.card-body-bg-color{
+
+.card-body-bg-color {
     background-color: #F7F7F7;
 }
 
@@ -119,7 +120,8 @@ li {
     height: 100%;
 }
 
-.column-space-evenly, img {
+.column-space-evenly,
+img {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -127,11 +129,18 @@ li {
     width: 90px;
 }
 
-.card:hover{
-    background-color: rgba(255,255,255, 0.1);
+.card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.score-text{
+.score-text {
     font-size: 22px;
     font-weight: 700;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
