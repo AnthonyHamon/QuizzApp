@@ -78,6 +78,14 @@ let questions = [
         "answer_3": "Closed Element",
         "answer_4": "Broken Tag",
         "right_answer": 2
+    },
+    {
+        "question":"Wer hat HTML erfunden?",
+        "answer_1": "Tim Berners-Lee",
+        "answer_2": "Martin Luther King",
+        "answer_3": "Harry Potter",
+        "answer_4": "Bill Gates",
+        "right_answer": 1
     }
 ];
 
@@ -116,26 +124,26 @@ function returnQuizz(){
     return `
     <div class="column-space-between">
                 <div class="card-title mt-3">
-                    <h5>question'</h5>
+                    <h5 id="questionText"></h5>
                 </div>
                 <div style="padding:24px">
                     <div class="card mb-2">
-                        <div class="card-body">
+                        <div class="card-body" id="answer_1">
                             Antwort
                         </div>
                     </div>
                     <div class="card mb-2">
-                        <div class="card-body">
+                        <div class="card-body" id="answer_2">
                             Antwort
                         </div>
                     </div>
                     <div class="card mb-2">
-                        <div class="card-body">
+                        <div class="card-body" id="answer_3">
                             Antwort
                         </div>
                     </div>
                     <div class="card mb-2">
-                        <div class="card-body">
+                        <div class="card-body" id="answer_4">
                             Antwort
                         </div>
                     </div>
@@ -143,13 +151,15 @@ function returnQuizz(){
 
                 <div class="space-between p-2">
                     <div class="d-flex p-2 bd-highlight">
-                        <span><b>1</b> von <b>5</b> Frage</span>
+                        <span><b>1</b> von <b>${questions.length}</b> Frage</span>
                     </div>
                     <button type="button" class="btn btn-primary">Next Question</button>
                 </div>
             </div>
     `
 }
+
+
 
 function returnResultCard(){
     return `
@@ -167,6 +177,8 @@ function returnResultCard(){
     `
 }
 
+let currentQuestion = 0;
+
 function init(){
     let quizCtn = document.getElementById('quizCtn');
     quizCtn.innerHTML = returnQuizCtn();
@@ -177,6 +189,16 @@ function startQuiz(){
     quizz.classList.remove('card-body-bg');
     quizz.classList.add('card-body-bg-color');
     quizz.innerHTML = returnQuizz();
+    showQuestion();
+}
+
+function showQuestion(){
+    let question = questions[currentQuestion];
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
 function showResult(){
