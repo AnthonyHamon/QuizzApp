@@ -1,6 +1,83 @@
 let questions = [
     {
-        "question":""
+        "question":"What does HTML stand for?",
+        "answer_1": " Hyper Text Markup Language",
+        "answer_2": " Hyperlinks and Text Markup Language",
+        "answer_3": " Home Tool Markup Language",
+        "answer_4": " Hide The Math Like",
+        "right_answer": 1
+    },
+    {
+        "question":"Who is making the Web standards?",
+        "answer_1": "Microsoft",
+        "answer_2": "Mozilla",
+        "answer_3": "The World Wide Web Consortium",
+        "answer_4": "Google",
+        "right_answer": 3
+    },
+    {
+        "question":"What is the correct HTML element for inserting a line break?",
+        "answer_1": "<break>",
+        "answer_2": "<br>",
+        "answer_3": "<b>",
+        "answer_4": "<lb>",
+        "right_answer": 2
+    },
+    {
+        "question":"Which character is used to indicate an end tag?",
+        "answer_1": "<",
+        "answer_2": "^",
+        "answer_3": "*",
+        "answer_4": "/",
+        "right_answer": 4
+    },
+    {
+        "question":"Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        "answer_1": "longdesk",
+        "answer_2": "alt",
+        "answer_3": "src",
+        "answer_4": "title",
+        "right_answer": 2
+    },
+    {
+        "question":"In HTML, which attribute is used to specify that an input field must be filled out?",
+        "answer_1": "validate",
+        "answer_2": "formvalidate",
+        "answer_3": "placeholder",
+        "answer_4": "required",
+        "right_answer": 4
+    },
+    {
+        "question":"Was ist eine mögliche Endung für eine HTML-Datei?",
+        "answer_1": "*.ml",
+        "answer_2": "*.web",
+        "answer_3": "*.htm",
+        "answer_4": "*.tml",
+        "right_answer": 3
+    },
+    {
+        "question":"What is the HTML element used to display an image?",
+        "answer_1": "<img>",
+        "answer_2": "<picture>",
+        "answer_3": "<image>",
+        "answer_4": "<pic>",
+        "right_answer": 1
+    },
+    {
+        "question":"How to write an HTML Comment ?",
+        "answer_1": "// This is an HTML comment",
+        "answer_2": "<!-- This is an HTML comment -->",
+        "answer_3": "/* This is an HTML comment */",
+        "answer_4": "-/- This is an HTML comment -/-",
+        "right_answer": 2
+    },
+    {
+        "question":"What is called an element that does not have a closing tag?",
+        "answer_1": "Tag",
+        "answer_2": "Empty Element",
+        "answer_3": "Closed Element",
+        "answer_4": "Broken Tag",
+        "right_answer": 2
     }
 ];
 
