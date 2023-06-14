@@ -1,3 +1,10 @@
+let questions = [
+    {
+        "question":""
+    }
+];
+
+
 function returnQuizCtn(){
     return `
     <div class="full-card">
@@ -67,14 +74,35 @@ function returnQuizz(){
     `
 }
 
-// function init(){
-//     let quizCtn = document.getElementById('quizCtn');
-//     quizCtn.innerHTML = returnQuizCtn();
-// }
+function returnResultCard(){
+    return `
+    <div class="card-body column-space-evenly">
+    <div class="column">
+        <img src="img/brain result.png" alt="">
+        <span class="score-text">HTML QUIZ COMPLETED</span>
+    </div>
+        <div style="width: 40%;" class="space-between">
+            <span style="color: #F28C3A;" class="score-text">YOUR SCORE</span>
+            <span class="score-text">10/10</span>
+        </div>
+        <button style="width: 30%;" type="button" class="btn btn-primary rounded-3">SHARE</button>
+    </div>
+    `
+}
 
-// function startQuiz(){
-//     let quizz = document.getElementById('quizz');
-//     quizz.classList.remove('card-body-bg');
-//     quizz.classList.add('card-body-bg-color');
-//     quizz.innerHTML = returnQuizz();
-// }
+function init(){
+    let quizCtn = document.getElementById('quizCtn');
+    quizCtn.innerHTML = returnQuizCtn();
+}
+
+function startQuiz(){
+    let quizz = document.getElementById('quizz');
+    quizz.classList.remove('card-body-bg');
+    quizz.classList.add('card-body-bg-color');
+    quizz.innerHTML = returnQuizz();
+}
+
+function showResult(){
+    let quizz = document.getElementById('quizz');
+    quizz.innerHTML = showResult();
+}
