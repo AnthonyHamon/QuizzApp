@@ -17,10 +17,10 @@ let questions = [
     },
     {
         "question":"What is the correct HTML element for inserting a line break?",
-        "answer_1": "<break>",
-        "answer_2": "<br>",
-        "answer_3": "<b>",
-        "answer_4": "<lb>",
+        "answer_1": '<xmp><break></xmp>',
+        "answer_2": "<xmp><br></xmp>",
+        "answer_3": "<xmp><b></xmp>",
+        "answer_4": "<xmp><lb></xmp>",
         "right_answer": 2
     },
     {
@@ -57,18 +57,18 @@ let questions = [
     },
     {
         "question":"What is the HTML element used to display an image?",
-        "answer_1": "<img>",
-        "answer_2": "<picture>",
-        "answer_3": "<image>",
-        "answer_4": "<pic>",
+        "answer_1": "<xmp><img></xmp>",
+        "answer_2": "<xmp><picture></xmp>",
+        "answer_3": "<xmp><image></xmp>",
+        "answer_4": "<xmp><pic></xmp>",
         "right_answer": 1
     },
     {
         "question":"How to write an HTML Comment ?",
-        "answer_1": "// This is an HTML comment",
-        "answer_2": "<!-- This is an HTML comment -->",
-        "answer_3": "/* This is an HTML comment */",
-        "answer_4": "-/- This is an HTML comment -/-",
+        "answer_1": "<xmp>// This is an HTML comment</xmp>",
+        "answer_2": "<xmp><!-- This is an HTML comment --></xmp>",
+        "answer_3": "<xmp>/* This is an HTML comment */</xmp>",
+        "answer_4": "<xmp>-/- This is an HTML comment -/-</xmp>",
         "right_answer": 2
     },
     {
@@ -127,22 +127,22 @@ function returnQuizz(){
                     <h5 id="questionText"></h5>
                 </div>
                 <div style="padding:24px">
-                    <div class="card mb-2">
+                    <div class="card mb-2" onclick="answer('answer_1')">
                         <div class="card-body" id="answer_1">
                             Antwort
                         </div>
                     </div>
-                    <div class="card mb-2">
+                    <div class="card mb-2" onclick="answer('answer_2')">
                         <div class="card-body" id="answer_2">
                             Antwort
                         </div>
                     </div>
-                    <div class="card mb-2">
+                    <div class="card mb-2" onclick="answer('answer_3')">
                         <div class="card-body" id="answer_3">
                             Antwort
                         </div>
                     </div>
-                    <div class="card mb-2">
+                    <div class="card mb-2" onclick="answer('answer_4')">
                         <div class="card-body" id="answer_4">
                             Antwort
                         </div>
@@ -153,7 +153,7 @@ function returnQuizz(){
                     <div class="d-flex p-2 bd-highlight">
                         <span><b>1</b> von <b>${questions.length}</b> Frage</span>
                     </div>
-                    <button type="button" class="btn btn-primary">Next Question</button>
+                    <button onclick="nextQuestion()" id="nextButton" type="button" disabled class="btn btn-primary">Next Question</button>
                 </div>
             </div>
     `
@@ -204,4 +204,25 @@ function showQuestion(){
 function showResult(){
     let quizz = document.getElementById('quizz');
     quizz.innerHTML = showResult();
+}
+
+function answer(selection){
+    let question = questions[currentQuestion];
+let selectedAnswerNumber = selection.slice(-1);
+
+
+let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if(selectedAnswerNumber == question['right_answer']){
+        document.getElementById(selection).parentNode.classList.add('success');
+    }else{
+        document.getElementById(selection).parentNode.classList.add('fail');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('success');
+    }
+    document.getElementById('nextButton').disabled = false;
+}
+
+function nextQuestion(){
+    currentQuestion++;
+    showQuestion();
 }
