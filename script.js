@@ -1,6 +1,6 @@
 let questions = [
     {
-        "question":"What does HTML stand for?",
+        "question": "What does HTML stand for?",
         "answer_1": " Hyper Text Markup Language",
         "answer_2": " Hyperlinks and Text Markup Language",
         "answer_3": " Home Tool Markup Language",
@@ -8,7 +8,7 @@ let questions = [
         "right_answer": 1
     },
     {
-        "question":"Who is making the Web standards?",
+        "question": "Who is making the Web standards?",
         "answer_1": "Microsoft",
         "answer_2": "Mozilla",
         "answer_3": "The World Wide Web Consortium",
@@ -16,7 +16,7 @@ let questions = [
         "right_answer": 3
     },
     {
-        "question":"What is the correct HTML element for inserting a line break?",
+        "question": "What is the correct HTML element for inserting a line break?",
         "answer_1": '<xmp><break></xmp>',
         "answer_2": "<xmp><br></xmp>",
         "answer_3": "<xmp><b></xmp>",
@@ -24,7 +24,7 @@ let questions = [
         "right_answer": 2
     },
     {
-        "question":"Which character is used to indicate an end tag?",
+        "question": "Which character is used to indicate an end tag?",
         "answer_1": "<",
         "answer_2": "^",
         "answer_3": "*",
@@ -32,7 +32,7 @@ let questions = [
         "right_answer": 4
     },
     {
-        "question":"Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
         "answer_1": "longdesk",
         "answer_2": "alt",
         "answer_3": "src",
@@ -40,7 +40,7 @@ let questions = [
         "right_answer": 2
     },
     {
-        "question":"In HTML, which attribute is used to specify that an input field must be filled out?",
+        "question": "In HTML, which attribute is used to specify that an input field must be filled out?",
         "answer_1": "validate",
         "answer_2": "formvalidate",
         "answer_3": "placeholder",
@@ -48,7 +48,7 @@ let questions = [
         "right_answer": 4
     },
     {
-        "question":"Was ist eine mögliche Endung für eine HTML-Datei?",
+        "question": "Was ist eine mögliche Endung für eine HTML-Datei?",
         "answer_1": "*.ml",
         "answer_2": "*.web",
         "answer_3": "*.htm",
@@ -56,7 +56,7 @@ let questions = [
         "right_answer": 3
     },
     {
-        "question":"What is the HTML element used to display an image?",
+        "question": "What is the HTML element used to display an image?",
         "answer_1": "<xmp><img></xmp>",
         "answer_2": "<xmp><picture></xmp>",
         "answer_3": "<xmp><image></xmp>",
@@ -64,7 +64,7 @@ let questions = [
         "right_answer": 1
     },
     {
-        "question":"How to write an HTML Comment ?",
+        "question": "How to write an HTML Comment ?",
         "answer_1": "<xmp>// This is an HTML comment</xmp>",
         "answer_2": "<xmp><!-- This is an HTML comment --></xmp>",
         "answer_3": "<xmp>/* This is an HTML comment */</xmp>",
@@ -72,7 +72,7 @@ let questions = [
         "right_answer": 2
     },
     {
-        "question":"What is called an element that does not have a closing tag?",
+        "question": "What is called an element that does not have a closing tag?",
         "answer_1": "Tag",
         "answer_2": "Empty Element",
         "answer_3": "Closed Element",
@@ -80,7 +80,7 @@ let questions = [
         "right_answer": 2
     },
     {
-        "question":"Wer hat HTML erfunden?",
+        "question": "Wer hat HTML erfunden?",
         "answer_1": "Tim Berners-Lee",
         "answer_2": "Martin Luther King",
         "answer_3": "Harry Potter",
@@ -90,7 +90,7 @@ let questions = [
 ];
 
 
-function returnQuizCtn(){
+function returnQuizCtn() {
     return `
     <div class="full-card">
             <div class="sidebar">
@@ -120,7 +120,7 @@ function returnQuizCtn(){
     `
 }
 
-function returnQuizz(){
+function returnQuizz() {
     return `
     <div class="column-space-between">
                 <div class="card-title mt-3">
@@ -151,7 +151,7 @@ function returnQuizz(){
 
                 <div class="space-between p-2">
                     <div class="d-flex p-2 bd-highlight">
-                        <span><b>1</b> von <b>${questions.length}</b> Frage</span>
+                        <span><b id="currentQuestionNumber">1</b> von <b>${questions.length}</b> Frage</span>
                     </div>
                     <button onclick="nextQuestion()" id="nextButton" type="button" disabled class="btn btn-primary">Next Question</button>
                 </div>
@@ -161,11 +161,11 @@ function returnQuizz(){
 
 
 
-function returnResultCard(){
+function returnResultCard() {
     return `
-    <div class="card-body column-space-evenly">
+    <div style="height: 100%" class="card-body column-space-evenly">
     <div class="column">
-        <img src="img/brain result.png" alt="">
+        <img src="img/Group 5.png" alt="">
         <span class="score-text">HTML QUIZ COMPLETED</span>
     </div>
         <div style="width: 40%;" class="space-between">
@@ -179,12 +179,12 @@ function returnResultCard(){
 
 let currentQuestion = 0;
 
-function init(){
+function init() {
     let quizCtn = document.getElementById('quizCtn');
     quizCtn.innerHTML = returnQuizCtn();
 }
 
-function startQuiz(){
+function startQuiz() {
     let quizz = document.getElementById('quizz');
     quizz.classList.remove('card-body-bg');
     quizz.classList.add('card-body-bg-color');
@@ -192,37 +192,65 @@ function startQuiz(){
     showQuestion();
 }
 
-function showQuestion(){
-    let question = questions[currentQuestion];
-    document.getElementById('questionText').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+function showQuestion() {
+    if(currentQuestion == questions.length-1){
+        document.getElementById('nextButton').innerHTML = "Show Result!"
+    }
+    if (currentQuestion >= questions.length) {
+        let quizz = document.getElementById('quizz');
+        quizz.innerHTML = returnResultCard();
+
+    } else {
+        let question = questions[currentQuestion];
+        document.getElementById('questionText').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 
-function showResult(){
+function showResult() {
     let quizz = document.getElementById('quizz');
     quizz.innerHTML = showResult();
 }
 
-function answer(selection){
+function answer(selection) {
     let question = questions[currentQuestion];
-let selectedAnswerNumber = selection.slice(-1);
+    let selectedAnswerNumber = selection.slice(-1);
 
 
-let idOfRightAnswer = `answer_${question['right_answer']}`;
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if(selectedAnswerNumber == question['right_answer']){
+    if (selectedAnswerNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('success');
-    }else{
+    } else {
         document.getElementById(selection).parentNode.classList.add('fail');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('success');
     }
     document.getElementById('nextButton').disabled = false;
 }
 
-function nextQuestion(){
+function nextQuestion() {
     currentQuestion++;
+    document.getElementById('nextButton').disabled = true;
+    removeBgColor();
+    upQuestionNumber();
     showQuestion();
+}
+
+function upQuestionNumber() {
+    let questionNumber = currentQuestion;
+    document.getElementById('currentQuestionNumber').innerHTML = questionNumber + 1;
+}
+
+function removeBgColor() {
+    document.getElementById('answer_1').parentNode.classList.remove('success');
+    document.getElementById('answer_2').parentNode.classList.remove('success');
+    document.getElementById('answer_3').parentNode.classList.remove('success');
+    document.getElementById('answer_4').parentNode.classList.remove('success');
+    document.getElementById('answer_1').parentNode.classList.remove('fail');
+    document.getElementById('answer_2').parentNode.classList.remove('fail');
+    document.getElementById('answer_3').parentNode.classList.remove('fail');
+    document.getElementById('answer_4').parentNode.classList.remove('fail');
 }
