@@ -1,0 +1,28 @@
+@media(max-width: 450px){
+    .start-card-title{
+        font-size: 28px;
+    }
+
+    .sidebar img, ul, li{
+        width: 56px;
+        font-size: 18px;
+    }
+
+    xmp{
+        text-wrap: wrap;
+    }
+
+    .column img{
+        max-width: 100%;
+    }
+
+    .column span{
+        text-align: center;
+    }
+
+    .space-between{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+}
