@@ -170,14 +170,21 @@ function returnResultCard() {
     </div>
         <div style="width: 40%;" class="space-between">
             <span style="color: #F28C3A;" class="score-text">YOUR SCORE</span>
-            <span class="score-text">10/10</span>
+            <span class="score-text"><span id=result></span>/${questions.length}</span>
         </div>
-        <button style="width: 30%;" type="button" class="btn btn-primary rounded-3">SHARE</button>
+        <div class="endscreen-button">
+            <button style="width: 30%;" type="button" class="btn btn-primary rounded-3">SHARE</button>
+            <button onclick="restartGame()" style="width: 30%;" type="button" class="btn btn-primary rounded-3">Restart</button> 
+        </div>
     </div>
     `
 }
 
 let currentQuestion = 0;
+let rightQuestions = 0;
+let AUDIO_SUCCESS = new Audio('audio/success.mp3');
+let AUDIO_FAIL = new Audio('audio/fail.mp3');
+let AUDIO_END = new Audio('audio/end.mp3');
 
 function init() {
     let quizCtn = document.getElementById('quizCtn');
@@ -193,46 +200,68 @@ function startQuiz() {
 }
 
 function showQuestion() {
-    if(currentQuestion == questions.length-1){
+    if (currentQuestion == questions.length - 1) {
         document.getElementById('nextButton').innerHTML = "Show Result!"
     }
-    if (currentQuestion >= questions.length) {
-        let quizz = document.getElementById('quizz');
-        quizz.innerHTML = returnResultCard();
-
+    if (gameIsOver()) {
+        showEndScreen();
     } else {
-        let question = questions[currentQuestion];
-        document.getElementById('questionText').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        updateToNextQuestion()
     }
 }
 
-function showResult() {
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+}
+
+function gameIsOver(){
+    return currentQuestion >= questions.length;
+}
+
+function showEndScreen() {
     let quizz = document.getElementById('quizz');
-    quizz.innerHTML = showResult();
+    quizz.innerHTML = returnResultCard();
+    AUDIO_END.play();
+    document.getElementById('result').innerHTML = rightQuestions;
 }
 
 function answer(selection) {
     let question = questions[currentQuestion];
     let selectedAnswerNumber = selection.slice(-1);
-
-
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (selectedAnswerNumber == question['right_answer']) {
+    if (rightAnswerselected(question, selectedAnswerNumber)) {
         document.getElementById(selection).parentNode.classList.add('success');
+        rightQuestions++;
+        AUDIO_SUCCESS.play();
     } else {
         document.getElementById(selection).parentNode.classList.add('fail');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('success');
+        AUDIO_FAIL.play();
     }
     document.getElementById('nextButton').disabled = false;
 }
 
+function rightAnswerselected(question, selectedAnswerNumber){
+    return selectedAnswerNumber == question['right_answer'];
+}
+
+function updateProgressBar() {
+    let percent = (currentQuestion) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progressBar').innerHTML = `${percent} %`;
+    document.getElementById('progressBar').style = `width: ${percent}%`;
+    console.log('fortschritt', percent);
+}
+
 function nextQuestion() {
     currentQuestion++;
+    updateProgressBar();
     document.getElementById('nextButton').disabled = true;
     removeBgColor();
     upQuestionNumber();
@@ -254,3 +283,10 @@ function removeBgColor() {
     document.getElementById('answer_3').parentNode.classList.remove('fail');
     document.getElementById('answer_4').parentNode.classList.remove('fail');
 }
+
+function restartGame() {
+    rightQuestions = 0;
+    currentQuestion = 0;
+    init();
+}
+

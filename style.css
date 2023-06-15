@@ -154,5 +154,10 @@ li {
 
 .fail{
     background-color: #FFA3A4 !important;
+}
 
+.endscreen-button{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
 }
